@@ -49,14 +49,14 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
     UDFCompatibleDatafeedBase.prototype.calculateHistoryDepth = function (resolution, resolutionBack, intervalBack) {
         return undefined;
     };
-    UDFCompatibleDatafeedBase.prototype.getMarks = function (symbolInfo, startDate, endDate, onDataCallback, resolution) {
+    UDFCompatibleDatafeedBase.prototype.getMarks = function (symbolInfo, from, to, onDataCallback, resolution) {
         if (!this._configuration.supports_marks) {
             return;
         }
         var requestParams = {
             symbol: symbolInfo.ticker || '',
-            from: startDate,
-            to: endDate,
+            from: from,
+            to: to,
             resolution: resolution,
         };
         this._send('marks', requestParams)
@@ -83,14 +83,14 @@ var UDFCompatibleDatafeedBase = /** @class */ (function () {
             onDataCallback([]);
         });
     };
-    UDFCompatibleDatafeedBase.prototype.getTimescaleMarks = function (symbolInfo, startDate, endDate, onDataCallback, resolution) {
+    UDFCompatibleDatafeedBase.prototype.getTimescaleMarks = function (symbolInfo, from, to, onDataCallback, resolution) {
         if (!this._configuration.supports_timescale_marks) {
             return;
         }
         var requestParams = {
             symbol: symbolInfo.ticker || '',
-            from: startDate,
-            to: endDate,
+            from: from,
+            to: to,
             resolution: resolution,
         };
         this._send('timescale_marks', requestParams)
